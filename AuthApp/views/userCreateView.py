@@ -4,14 +4,14 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import generics
 
 from AuthApp.models.user                    import User
-from AuthApp.serializers.userSerializer import UserSerializer, UserPassengerSerializer, UserDriverSerializer, AllUsersSerializer
+from AuthApp.serializers.userSerializer import UserSerializer, UserDriverSerializer, AllUsersSerializer
 
 class UserCreateView(views.APIView):
     def post(self, request, *args, **kwargs):
         serializer = UserSerializer(data=request.data)
         
         if request.data.get('typeAccount') == 'P':
-            serializer = UserPassengerSerializer(data=request.data)
+            serializer = UserSerializer(data=request.data)
         elif request.data.get('typeAccount') == 'D':
             serializer = UserDriverSerializer(data=request.data)
         
